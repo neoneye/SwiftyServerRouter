@@ -23,21 +23,6 @@ class RouteBuilder_Documentation: RouteBuilder {
 		}
 	}
 
-	#if canImport(PerfectHTTP)
-	func perfect_endpoint(method: PerfectHTTP.HTTPMethod, route: String, purpose: String, data: [String:Any], handler: @escaping Perfect_ReturnsRequestHandlerGivenData) {
-		let uri: String = stack.joined() + route
-
-		let item = EndpointItem(
-			method: String(describing: method).lowercased(),
-			route: uri,
-			purpose: purpose,
-			insecure_noAuthentication: true,
-			className: "simple"
-		)
-		self.items.append(item)
-	}
-	#endif
-
 	func endpoint<T: Endpoint>(method: Endpoint_HTTPMethod, route: String, handlerType: T.Type) {
 		let uri: String = stack.joined() + route
 		let className = String(describing: handlerType)
@@ -53,6 +38,21 @@ class RouteBuilder_Documentation: RouteBuilder {
 		)
 		self.items.append(item)
 	}
+
+	#if canImport(PerfectHTTP)
+	func perfect_endpoint(method: PerfectHTTP.HTTPMethod, route: String, purpose: String, data: [String:Any], handler: @escaping Perfect_ReturnsRequestHandlerGivenData) {
+		let uri: String = stack.joined() + route
+
+		let item = EndpointItem(
+			method: String(describing: method).lowercased(),
+			route: uri,
+			purpose: purpose,
+			insecure_noAuthentication: true,
+			className: "simple"
+		)
+		self.items.append(item)
+	}
+	#endif
 }
 
 class EndpointItem {
