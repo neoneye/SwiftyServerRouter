@@ -28,7 +28,7 @@ class RouteBuilder_Documentation: RouteBuilder {
 		let uri: String = stack.joined() + route
 
 		let item = EndpointItem(
-			method: method.description.lowercased(),
+			method: String(describing: method).lowercased(),
 			route: uri,
 			purpose: purpose,
 			insecure_noAuthentication: true,
@@ -45,7 +45,7 @@ class RouteBuilder_Documentation: RouteBuilder {
 		let purpose: String = handler.purpose
 		let insecure_noAuthentication: Bool = handler is Insecure_NoAuthentication
 		let item = EndpointItem(
-			method: method.description.lowercased(),
+			method: String(describing: method).lowercased(),
 			route: uri,
 			purpose: purpose,
 			insecure_noAuthentication: insecure_noAuthentication,
