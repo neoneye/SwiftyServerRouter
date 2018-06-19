@@ -94,7 +94,7 @@ fileprivate func exceptionHandler(_ handler: @escaping ThrowingRequestHandler) -
 	let result: (HTTPRequest, HTTPResponse) -> () = { (request, response) in
 		do {
 			try handler(request, response)
-		} catch let NetworkError.custom(message, status) {
+		} catch let EndpointHandlerError.custom(message, status) {
 			var dict = [String: Any]()
 			dict["uri"] = request.uri
 			dict["status"] = status.code
@@ -112,7 +112,7 @@ fileprivate func exceptionHandler(_ handler: @escaping ThrowingRequestHandler) -
 			dict["message"] = "Unhandled exception: \(error)"
 			let jsonString: String? = try? dict.jsonEncodedString()
 			response.status = .internalServerError
-			response.setHeader(.contentType, value: ContentType.application_json.rawValue)
+			response.setHeader(.contentType, value: "application/json")
 			response.setBody(string: jsonString ?? "{}")
 			response.completed()
 		}
