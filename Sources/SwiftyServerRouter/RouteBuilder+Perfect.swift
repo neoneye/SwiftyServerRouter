@@ -36,7 +36,7 @@ class RouteBuilder_PerfectRoutes: RouteBuilder {
 	func perfect_endpoint(method: PerfectHTTP.HTTPMethod, route: String, purpose: String, data: [String:Any], handler: @escaping Perfect_ReturnsRequestHandlerGivenData) {
 		let uri: String = stack.joined() + route
 		guard let resolvedHandler = try? handler(data) else {
-			log.error("endpoint did not return a handler")
+			print("ERROR: endpoint for route '\(route)', did not return a handler")
 			return
 		}
 		routes.add(method: method, uri: uri, handler: resolvedHandler)
