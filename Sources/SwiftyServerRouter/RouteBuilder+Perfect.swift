@@ -7,6 +7,8 @@ public class RouteBuilder_PerfectRoutes: RouteBuilder {
 	private var stack = [String]()
 	public var routes = PerfectHTTP.Routes()
 
+	public init() {}
+
 	public func scope(_ item: String, scopeInner: () -> Void) {
 		push(item)
 		scopeInner()
@@ -49,6 +51,8 @@ public class RouteBuilder_PerfectRoutes: RouteBuilder {
 public class RouteBuilder_PerfectDictionary: RouteBuilder {
 	private var stack = [String]()
 	public var routes = [[String: Any]]()
+
+	public init() {}
 
 	public func scope(_ item: String, scopeInner: () -> Void) {
 		push(item)

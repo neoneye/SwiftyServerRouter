@@ -7,6 +7,8 @@ public class RouteBuilder_Documentation: RouteBuilder {
 	private var stack = [String]()
 	public var items = [EndpointItem]()
 
+	public init() {}
+
 	public func scope(_ item: String, scopeInner: () -> Void) {
 		push(item)
 		scopeInner()
