@@ -3,11 +3,11 @@
 import PerfectHTTP
 #endif
 
-class RouteBuilder_Documentation: RouteBuilder {
+public class RouteBuilder_Documentation: RouteBuilder {
 	private var stack = [String]()
-	var items = [EndpointItem]()
+	public var items = [EndpointItem]()
 
-	func scope(_ item: String, scopeInner: () -> Void) {
+	public func scope(_ item: String, scopeInner: () -> Void) {
 		push(item)
 		scopeInner()
 		pop()
@@ -23,7 +23,7 @@ class RouteBuilder_Documentation: RouteBuilder {
 		}
 	}
 
-	func endpoint<T: Endpoint>(method: Endpoint_HTTPMethod, route: String, handlerType: T.Type) {
+	public func endpoint<T: Endpoint>(method: Endpoint_HTTPMethod, route: String, handlerType: T.Type) {
 		let uri: String = stack.joined() + route
 		let className = String(describing: handlerType)
 		let handler: Endpoint = handlerType.init()
@@ -40,7 +40,7 @@ class RouteBuilder_Documentation: RouteBuilder {
 	}
 
 	#if canImport(PerfectHTTP)
-	func perfect_endpoint(method: PerfectHTTP.HTTPMethod, route: String, purpose: String, data: [String:Any], handler: @escaping Perfect_ReturnsRequestHandlerGivenData) {
+	public func perfect_endpoint(method: PerfectHTTP.HTTPMethod, route: String, purpose: String, data: [String:Any], handler: @escaping Perfect_ReturnsRequestHandlerGivenData) {
 		let uri: String = stack.joined() + route
 
 		let item = EndpointItem(
@@ -55,14 +55,14 @@ class RouteBuilder_Documentation: RouteBuilder {
 	#endif
 }
 
-class EndpointItem {
-	let method: String
-	let route: String
-	let purpose: String
-	let insecure_noAuthentication: Bool
-	let className: String
+public class EndpointItem {
+	public let method: String
+	public let route: String
+	public let purpose: String
+	public let insecure_noAuthentication: Bool
+	public let className: String
 
-	init(method: String, route: String, purpose: String, insecure_noAuthentication: Bool, className: String) {
+	public init(method: String, route: String, purpose: String, insecure_noAuthentication: Bool, className: String) {
 		self.method = method
 		self.route = route
 		self.purpose = purpose
