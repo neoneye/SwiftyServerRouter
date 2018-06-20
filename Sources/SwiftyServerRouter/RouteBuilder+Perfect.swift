@@ -3,11 +3,11 @@
 import PerfectHTTP
 
 
-class RouteBuilder_PerfectRoutes: RouteBuilder {
+public class RouteBuilder_PerfectRoutes: RouteBuilder {
 	private var stack = [String]()
-	var routes = PerfectHTTP.Routes()
+	public var routes = PerfectHTTP.Routes()
 
-	func scope(_ item: String, scopeInner: () -> Void) {
+	public func scope(_ item: String, scopeInner: () -> Void) {
 		push(item)
 		scopeInner()
 		pop()
@@ -23,7 +23,7 @@ class RouteBuilder_PerfectRoutes: RouteBuilder {
 		}
 	}
 
-	func endpoint<T: Endpoint>(method: Endpoint_HTTPMethod, route: String, handlerType: T.Type) {
+	public func endpoint<T: Endpoint>(method: Endpoint_HTTPMethod, route: String, handlerType: T.Type) {
 		let uri: String = stack.joined() + route
 		let perfectHandler = exceptionHandler() { (request: HTTPRequest, response: HTTPResponse) in
 			let context = HandlerContext(request: request, response: response)
@@ -33,7 +33,7 @@ class RouteBuilder_PerfectRoutes: RouteBuilder {
 		routes.add(method: method, uri: uri, handler: perfectHandler)
 	}
 
-	func perfect_endpoint(method: PerfectHTTP.HTTPMethod, route: String, purpose: String, data: [String:Any], handler: @escaping Perfect_ReturnsRequestHandlerGivenData) {
+	public func perfect_endpoint(method: PerfectHTTP.HTTPMethod, route: String, purpose: String, data: [String:Any], handler: @escaping Perfect_ReturnsRequestHandlerGivenData) {
 		let uri: String = stack.joined() + route
 		guard let resolvedHandler = try? handler(data) else {
 			print("ERROR: endpoint for route '\(route)', did not return a handler")
@@ -46,11 +46,11 @@ class RouteBuilder_PerfectRoutes: RouteBuilder {
 
 /// Build a dictionary for use with `HTTPServerExConfig.swift`
 /// That is initialized like this: `try HTTPServer.launch(configurationData: confData)`
-class RouteBuilder_PerfectDictionary: RouteBuilder {
+public class RouteBuilder_PerfectDictionary: RouteBuilder {
 	private var stack = [String]()
-	var routes = [[String: Any]]()
+	public var routes = [[String: Any]]()
 
-	func scope(_ item: String, scopeInner: () -> Void) {
+	public func scope(_ item: String, scopeInner: () -> Void) {
 		push(item)
 		scopeInner()
 		pop()
@@ -66,7 +66,7 @@ class RouteBuilder_PerfectDictionary: RouteBuilder {
 		}
 	}
 
-	func endpoint<T: Endpoint>(method: Endpoint_HTTPMethod, route: String, handlerType: T.Type) {
+	public func endpoint<T: Endpoint>(method: Endpoint_HTTPMethod, route: String, handlerType: T.Type) {
 		let uri: String = stack.joined() + route
 		let perfectHandler = exceptionHandler() { (request: HTTPRequest, response: HTTPResponse) in
 			let context = HandlerContext(request: request, response: response)
@@ -77,7 +77,7 @@ class RouteBuilder_PerfectDictionary: RouteBuilder {
 		routes.append(["method":methodName, "uri":uri, "handler":perfectHandler])
 	}
 
-	func perfect_endpoint(method: PerfectHTTP.HTTPMethod, route: String, purpose: String, data: [String:Any], handler: @escaping Perfect_ReturnsRequestHandlerGivenData) {
+	public func perfect_endpoint(method: PerfectHTTP.HTTPMethod, route: String, purpose: String, data: [String:Any], handler: @escaping Perfect_ReturnsRequestHandlerGivenData) {
 		let uri: String = stack.joined() + route
 		let methodName = method.description.lowercased()
 		var data2 = data

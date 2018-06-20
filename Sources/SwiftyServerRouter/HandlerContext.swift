@@ -6,11 +6,11 @@ import PerfectHTTP
 
 #if canImport(PerfectHTTP)
 
-class HandlerContext {
-	let request: HTTPRequest
-	let response: HTTPResponse
+public class HandlerContext {
+	public let request: HTTPRequest
+	public let response: HTTPResponse
 
-	init(request: HTTPRequest, response: HTTPResponse) {
+	public init(request: HTTPRequest, response: HTTPResponse) {
 		self.request = request
 		self.response = response
 	}
@@ -18,8 +18,8 @@ class HandlerContext {
 
 #else
 
-class HandlerContext {
-	init() {
+public class HandlerContext {
+	public init() {
 	}
 }
 

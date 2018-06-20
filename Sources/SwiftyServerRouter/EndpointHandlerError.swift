@@ -3,7 +3,7 @@
 import PerfectHTTP
 #endif
 
-enum EndpointHandlerError: Error {
+public enum EndpointHandlerError: Error {
 	#if canImport(PerfectHTTP)
 	case custom(String, PerfectHTTP.HTTPResponseStatus)
 	#endif
