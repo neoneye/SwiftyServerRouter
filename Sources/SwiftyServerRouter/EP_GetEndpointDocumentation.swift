@@ -4,12 +4,12 @@ import PerfectHTTP
 import PerfectMustache
 #endif
 
-class EP_GetEndpointDocumentation: Endpoint {
-	required init() {}
+public class EP_GetEndpointDocumentation: Endpoint {
+	public required init() {}
 
-	let purpose = "Documentation for all endpoints"
+	public let purpose = "Documentation for all endpoints"
 
-	func handler(context: HandlerContext) throws {
+	public func handler(context: HandlerContext) throws {
 
 		let builder = RouteBuilder_Documentation()
 		let endpoints: [Any] = builder.items.map { $0.jsonDictionary }
