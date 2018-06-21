@@ -12,14 +12,15 @@ let package = Package(
             targets: ["SwiftyServerRouter"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/PerfectlySoft/Perfect-HTTP.git", .upToNextMajor(from: "3.0.0"))
+        .package(url: "https://github.com/PerfectlySoft/Perfect-HTTP.git", .upToNextMajor(from: "3.0.0")),
+		.package(url: "https://github.com/PerfectlySoft/Perfect-Mustache.git", .upToNextMajor(from: "3.0.0"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "SwiftyServerRouter",
-            dependencies: ["PerfectHTTP"]),
+            dependencies: ["PerfectHTTP", "PerfectMustache"]),
         .testTarget(
             name: "SwiftyServerRouterTests",
             dependencies: ["SwiftyServerRouter"]),
