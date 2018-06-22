@@ -1,5 +1,4 @@
 // MIT license. Copyright (c) 2018 SwiftyServerRouter. All rights reserved.
-#if canImport(PerfectHTTP)
 import PerfectHTTP
 
 
@@ -123,5 +122,3 @@ fileprivate func exceptionHandler(_ handler: @escaping ThrowingRequestHandler) -
 	}
 	return result
 }
-
-#endif

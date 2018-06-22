@@ -1,8 +1,6 @@
 // MIT license. Copyright (c) 2018 SwiftyServerRouter. All rights reserved.
-#if canImport(PerfectHTTP) && canImport(PerfectMustache)
 import PerfectHTTP
 import PerfectMustache
-#endif
 
 public class EP_GetEndpointDocumentation: Endpoint {
 	public required init() {}
@@ -22,15 +20,11 @@ public class EP_GetEndpointDocumentation: Endpoint {
 			endpoint_count_pretty = "\(endpoint_count) Endpoints"
 		}
 
-		#if canImport(PerfectHTTP) && canImport(PerfectMustache)
 		let renderContext: [String : Any] = [
 			"endpoint": endpoints,
 			"endpoint_count": endpoint_count_pretty
 		]
 		context.response.render(template: "views/components/document_endpoints", context: renderContext)
-		#else
-		
-		#endif
 	}
 	
 }
@@ -53,7 +47,6 @@ extension EndpointItem {
 	}
 }
 
-#if canImport(PerfectHTTP) && canImport(PerfectMustache)
 fileprivate struct MustacheHandler: MustachePageHandler {
 	var context: [String: Any]
 	func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
@@ -79,4 +72,3 @@ extension HTTPResponse {
 		mustacheRequest(request: self.request, response: self, handler: MustacheHandler(context: context), templatePath: request.documentRoot + "/\(template).mustache")
 	}
 }
-#endif

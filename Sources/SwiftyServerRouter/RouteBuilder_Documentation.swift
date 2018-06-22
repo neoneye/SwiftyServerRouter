@@ -1,7 +1,5 @@
 // MIT license. Copyright (c) 2018 SwiftyServerRouter. All rights reserved.
-#if canImport(PerfectHTTP)
 import PerfectHTTP
-#endif
 
 public class RouteBuilder_Documentation: RouteBuilder {
 	private var stack = [String]()
@@ -41,7 +39,6 @@ public class RouteBuilder_Documentation: RouteBuilder {
 		self.items.append(item)
 	}
 
-	#if canImport(PerfectHTTP)
 	public func perfect_endpoint(method: PerfectHTTP.HTTPMethod, route: String, purpose: String, data: [String:Any], handler: @escaping Perfect_ReturnsRequestHandlerGivenData) {
 		let uri: String = stack.joined() + route
 
@@ -54,7 +51,6 @@ public class RouteBuilder_Documentation: RouteBuilder {
 		)
 		self.items.append(item)
 	}
-	#endif
 }
 
 public class EndpointItem {

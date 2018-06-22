@@ -1,10 +1,5 @@
 // MIT license. Copyright (c) 2018 SwiftyServerRouter. All rights reserved.
-#if canImport(PerfectHTTP)
 import PerfectHTTP
-#endif
-
-
-#if canImport(PerfectHTTP)
 
 public class HandlerContext {
 	public let request: HTTPRequest
@@ -15,12 +10,3 @@ public class HandlerContext {
 		self.response = response
 	}
 }
-
-#else
-
-public class HandlerContext {
-	public init() {
-	}
-}
-
-#endif
