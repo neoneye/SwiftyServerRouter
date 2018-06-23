@@ -1,2 +1,3 @@
-# SwiftyServerRouter
-Proof of concept generating documentation for all endpoints
+# SwiftyServerRouter - framework
+
+Please check out the [demo project](https://github.com/neoneye/SwiftyServerRouter-Demo).
