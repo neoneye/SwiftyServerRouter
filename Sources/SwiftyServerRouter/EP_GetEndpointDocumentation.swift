@@ -10,6 +10,7 @@ public class EP_GetEndpointDocumentation: Endpoint {
 	public func handler(context: HandlerContext) throws {
 
 		let builder = RouteBuilder_Documentation()
+		builder.populate()
 		let endpoints: [Any] = builder.items.map { $0.jsonDictionary }
 
 		let endpoint_count = builder.items.count
